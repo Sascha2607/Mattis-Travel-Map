@@ -1,18 +1,19 @@
 :root {
-  --ink: #17211d;
-  --muted: #5b665f;
-  --soft: #f7f4ec;
-  --panel: #fffdf8;
-  --line: #ddd4c7;
-  --line-strong: #c9bda9;
-  --sea: #c5e3e7;
-  --sea-deep: #99c7cf;
-  --land: #d9c8b0;
-  --land-hover: #f0bd70;
-  --visited: #0f9a6d;
-  --visited-deep: #056649;
-  --accent: #cc6445;
-  --shadow: 0 18px 50px rgba(30, 38, 35, 0.12);
+  --ink: #0b1210;
+  --muted: #62716b;
+  --soft: #eef6f2;
+  --panel: #fbfffb;
+  --line: #d6e3dc;
+  --line-strong: #a7bbb1;
+  --sea: #071d20;
+  --sea-deep: #041214;
+  --land: #b9c9bb;
+  --land-hover: #ffd166;
+  --visited: #20e39c;
+  --visited-deep: #08a875;
+  --accent: #ff6848;
+  --accent-cool: #38c7ff;
+  --shadow: 0 26px 80px rgba(3, 17, 15, 0.2);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -24,7 +25,7 @@ body {
   margin: 0;
   min-width: 320px;
   color: var(--ink);
-  background: var(--sea);
+  background: var(--sea-deep);
 }
 
 button,
@@ -38,7 +39,7 @@ button {
 
 .app-shell {
   display: grid;
-  grid-template-columns: minmax(320px, 382px) minmax(0, 1fr);
+  grid-template-columns: minmax(330px, 400px) minmax(0, 1fr);
   height: 100dvh;
   min-height: 0;
   overflow: hidden;
@@ -47,10 +48,10 @@ button {
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
   height: 100dvh;
   min-height: 0;
-  padding: 24px 26px;
+  padding: 28px;
   overflow: hidden;
   background: var(--panel);
   border-right: 1px solid var(--line);
@@ -66,10 +67,10 @@ button {
 }
 
 .eyebrow {
-  margin: 0 0 5px;
+  margin: 0 0 7px;
   color: var(--accent);
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -81,8 +82,10 @@ p {
 }
 
 h1 {
-  font-size: clamp(2rem, 4vw, 2.7rem);
-  line-height: 0.95;
+  max-width: 320px;
+  font-size: clamp(2.35rem, 4vw, 3rem);
+  font-weight: 920;
+  line-height: 0.9;
   letter-spacing: 0;
 }
 
@@ -95,7 +98,14 @@ h2 {
 .world-progress {
   display: grid;
   gap: 12px;
-  padding: 18px 0 4px;
+  padding: 18px;
+  color: #f6fff9;
+  background:
+    linear-gradient(135deg, rgba(32, 227, 156, 0.24), rgba(56, 199, 255, 0.08) 42%, rgba(255, 104, 72, 0.16)),
+    #0b1210;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(6, 18, 16, 0.18);
 }
 
 .metric-main,
@@ -116,35 +126,37 @@ h2 {
 }
 
 .metric-main span {
-  color: var(--muted);
+  color: rgba(246, 255, 249, 0.74);
   font-size: 0.98rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .metric-main strong {
-  font-size: clamp(2.65rem, 7vw, 3.7rem);
+  font-size: clamp(3rem, 8vw, 4.4rem);
+  color: #f6fff9;
   line-height: 0.9;
   letter-spacing: 0;
+  text-shadow: 0 0 30px rgba(32, 227, 156, 0.34);
 }
 
 .metric-row {
-  color: var(--muted);
+  color: rgba(246, 255, 249, 0.7);
   font-size: 0.88rem;
-  font-weight: 650;
+  font-weight: 750;
 }
 
 .progress-track {
   width: 100%;
   height: 12px;
   overflow: hidden;
-  background: #e7dfd2;
+  background: rgba(255, 255, 255, 0.14);
   border-radius: 999px;
 }
 
 .progress-fill {
   width: 0%;
   height: 100%;
-  background: linear-gradient(90deg, var(--visited-deep), var(--visited), #73c15b);
+  background: linear-gradient(90deg, var(--accent-cool), var(--visited), var(--accent));
   border-radius: inherit;
   transition: width 220ms ease;
 }
@@ -167,7 +179,7 @@ h2 {
   gap: 5px 8px;
   align-items: center;
   padding-bottom: 7px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(11, 18, 16, 0.1);
 }
 
 .continent-name {
@@ -179,7 +191,7 @@ h2 {
 }
 
 .continent-percent {
-  color: var(--visited-deep);
+  color: #00825a;
   font-weight: 850;
   text-align: right;
 }
@@ -192,13 +204,13 @@ h2 {
   grid-column: 1 / -1;
   height: 6px;
   overflow: hidden;
-  background: #e7dfd2;
+  background: #e3ece8;
   border-radius: 999px;
 }
 
 .continent-fill {
   height: 100%;
-  background: var(--visited);
+  background: linear-gradient(90deg, var(--visited), var(--accent-cool));
   border-radius: inherit;
   transition: width 220ms ease;
 }
@@ -228,11 +240,12 @@ h2 {
   border: 1px solid var(--line);
   border-radius: 8px;
   outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
 .search-row input:focus {
-  border-color: var(--visited);
-  box-shadow: 0 0 0 4px rgba(24, 168, 120, 0.16);
+  border-color: var(--visited-deep);
+  box-shadow: 0 0 0 4px rgba(32, 227, 156, 0.16);
 }
 
 .clear-search {
@@ -251,7 +264,7 @@ h2 {
 
 .clear-search:hover {
   color: var(--ink);
-  background: #ece5d8;
+  background: #ddebe5;
 }
 
 .quick-actions {
@@ -264,7 +277,7 @@ h2 {
   min-height: 38px;
   padding: 0 12px;
   color: var(--ink);
-  background: #f2eadc;
+  background: #eef6f2;
   border: 1px solid var(--line);
   border-radius: 8px;
   font-size: 0.85rem;
@@ -272,9 +285,22 @@ h2 {
   white-space: nowrap;
 }
 
+.quick-actions button:first-child {
+  color: #f6fff9;
+  background: #0b1210;
+  border-color: #0b1210;
+  box-shadow: 0 10px 24px rgba(6, 18, 16, 0.16);
+}
+
 .quick-actions button:hover {
   border-color: var(--line-strong);
-  background: #ebe0cf;
+  background: #e0eee8;
+}
+
+.quick-actions button:first-child:hover {
+  color: #07130f;
+  background: var(--visited);
+  border-color: var(--visited);
 }
 
 .quick-actions button:disabled {
@@ -308,13 +334,13 @@ h2 {
 
 .country-row:hover,
 .country-row.is-active {
-  background: var(--soft);
-  border-color: var(--line);
+  background: #eef8f3;
+  border-color: #bfd5ca;
 }
 
 .country-row.is-visited {
-  background: rgba(24, 168, 120, 0.1);
-  border-color: rgba(24, 168, 120, 0.18);
+  background: rgba(32, 227, 156, 0.13);
+  border-color: rgba(8, 168, 117, 0.26);
 }
 
 .country-check {
@@ -323,7 +349,7 @@ h2 {
   width: 22px;
   height: 22px;
   color: transparent;
-  background: #f4eadb;
+  background: #eef6f2;
   border: 1px solid var(--line-strong);
   border-radius: 50%;
   font-size: 0.82rem;
@@ -331,7 +357,7 @@ h2 {
 }
 
 .country-row.is-visited .country-check {
-  color: #fff;
+  color: #06120f;
   background: var(--visited);
   border-color: var(--visited-deep);
 }
@@ -375,15 +401,19 @@ h2 {
   height: 100dvh;
   min-height: 0;
   background:
-    radial-gradient(circle at 56% 44%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 42%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0)),
+    linear-gradient(128deg, rgba(32, 227, 156, 0.2), rgba(32, 227, 156, 0) 42%),
+    linear-gradient(242deg, rgba(255, 104, 72, 0.17), rgba(255, 104, 72, 0) 46%),
+    linear-gradient(180deg, rgba(56, 199, 255, 0.14), rgba(56, 199, 255, 0)),
     var(--sea);
 }
 
 .top-strip {
   min-height: 64px;
   padding: 14px 22px;
-  border-bottom: 1px solid rgba(39, 74, 79, 0.12);
+  color: #f6fff9;
+  background: rgba(4, 18, 20, 0.78);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(14px);
 }
 
 .map-title {
@@ -391,12 +421,13 @@ h2 {
 }
 
 .map-title strong {
+  color: #f6fff9;
   font-size: 1rem;
 }
 
 .map-title span,
 .legend {
-  color: #52666a;
+  color: rgba(246, 255, 249, 0.72);
   font-size: 0.86rem;
   font-weight: 750;
 }
@@ -416,7 +447,7 @@ h2 {
   display: inline-block;
   width: 13px;
   height: 13px;
-  border: 1px solid rgba(23, 33, 29, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.34);
   border-radius: 3px;
 }
 
@@ -432,6 +463,11 @@ h2 {
   position: relative;
   min-height: 0;
   overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, #0b3034, #041214);
+  background-size: 42px 42px, 42px 42px, auto;
 }
 
 #worldMap {
@@ -447,19 +483,21 @@ h2 {
 }
 
 .sphere {
-  fill: rgba(244, 252, 253, 0.72);
+  fill: rgba(9, 38, 43, 0.92);
+  stroke: rgba(56, 199, 255, 0.22);
+  stroke-width: 1.1;
 }
 
 .graticule {
   fill: none;
-  stroke: rgba(45, 88, 96, 0.28);
+  stroke: rgba(180, 242, 236, 0.22);
   stroke-width: 0.85;
 }
 
 .country {
   fill: var(--land);
-  stroke: rgba(94, 82, 66, 0.42);
-  stroke-width: 0.72;
+  stroke: rgba(17, 36, 32, 0.64);
+  stroke-width: 0.78;
   vector-effect: non-scaling-stroke;
   transition: fill 160ms ease, opacity 160ms ease;
 }
@@ -471,7 +509,7 @@ h2 {
 
 .country.is-visited {
   fill: var(--visited);
-  stroke: rgba(255, 255, 255, 0.68);
+  stroke: rgba(6, 18, 15, 0.72);
 }
 
 .country.is-visited:hover,
@@ -481,8 +519,8 @@ h2 {
 
 .country:focus {
   outline: none;
-  stroke: var(--accent);
-  stroke-width: 1.4;
+  stroke: #fff2d8;
+  stroke-width: 1.7;
 }
 
 .zoom-controls {
@@ -494,27 +532,29 @@ h2 {
   grid-template-columns: 42px 42px auto;
   gap: 7px;
   padding: 7px;
-  background: rgba(255, 253, 248, 0.9);
-  border: 1px solid rgba(39, 74, 79, 0.16);
+  background: rgba(5, 19, 21, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
-  box-shadow: 0 12px 32px rgba(40, 61, 62, 0.16);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
 }
 
 .zoom-controls button {
   height: 38px;
   min-width: 38px;
   padding: 0 12px;
-  color: var(--ink);
-  background: #f6f0e4;
-  border: 1px solid var(--line-strong);
+  color: #f6fff9;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 7px;
   font-size: 0.9rem;
   font-weight: 850;
 }
 
 .zoom-controls button:hover {
-  background: #e9dfcf;
-  border-color: #aa9a83;
+  color: #06120f;
+  background: var(--visited);
+  border-color: var(--visited);
 }
 
 .tooltip {
@@ -522,8 +562,9 @@ h2 {
   z-index: 3;
   max-width: min(260px, calc(100% - 24px));
   padding: 8px 10px;
-  color: #fff;
-  background: rgba(23, 33, 29, 0.92);
+  color: #06120f;
+  background: rgba(246, 255, 249, 0.94);
+  border: 1px solid rgba(32, 227, 156, 0.38);
   border-radius: 8px;
   font-size: 0.82rem;
   font-weight: 750;
@@ -535,13 +576,13 @@ h2 {
   position: absolute;
   inset: auto 18px 18px auto;
   padding: 9px 12px;
-  color: #42595d;
-  background: rgba(255, 253, 248, 0.82);
-  border: 1px solid rgba(39, 74, 79, 0.12);
+  color: #f6fff9;
+  background: rgba(5, 19, 21, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
   font-size: 0.84rem;
   font-weight: 800;
-  box-shadow: 0 10px 30px rgba(40, 61, 62, 0.12);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28);
 }
 
 .loading-state.is-hidden {
