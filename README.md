@@ -1,4 +1,4 @@
-# Been There
+# Mattis Travel Map
 
 Eine kleine lokale Reisekarte: Länder markieren, Karte einfärben, Welt- und Kontinent-Fortschritt sehen.
 

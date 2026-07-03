@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Been There - Reisekarte</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Mattis Travel Map</title>
+    <link rel="stylesheet" href="styles.css?v=3">
     <script src="assets/vendor/d3.v7.min.js" defer></script>
-    <script src="app.js" defer></script>
+    <script src="app.js?v=3" defer></script>
   </head>
   <body>
     <div class="app-shell">
@@ -14,7 +14,7 @@
         <header class="brand-row">
           <div>
             <p class="eyebrow">Reisekarte</p>
-            <h1>Been There</h1>
+            <h1>Mattis Travel Map</h1>
           </div>
         </header>
 
@@ -74,6 +74,11 @@
 
         <div id="mapWrap" class="map-wrap">
           <svg id="worldMap" role="img" aria-label="Weltkarte mit markierten Reisezielen"></svg>
+          <div class="zoom-controls" aria-label="Kartenzoom">
+            <button id="zoomInButton" type="button" aria-label="Hineinzoomen" title="Hineinzoomen">+</button>
+            <button id="zoomOutButton" type="button" aria-label="Herauszoomen" title="Herauszoomen">-</button>
+            <button id="zoomResetButton" type="button" aria-label="Zoom zurücksetzen" title="Zoom zurücksetzen">Reset</button>
+          </div>
           <div id="tooltip" class="tooltip" hidden></div>
           <div id="loadingState" class="loading-state">Karte lädt</div>
         </div>

@@ -27,6 +27,8 @@
     filteredCountries: [],
     visited: loadVisited(),
     activeId: null,
+    zoomBehavior: null,
+    zoomTransform: d3.zoomIdentity,
     resizeTimer: null,
   };
 
@@ -45,6 +47,9 @@
     mapStatus: document.getElementById("mapStatus"),
     mapWrap: document.getElementById("mapWrap"),
     worldMap: document.getElementById("worldMap"),
+    zoomInButton: document.getElementById("zoomInButton"),
+    zoomOutButton: document.getElementById("zoomOutButton"),
+    zoomResetButton: document.getElementById("zoomResetButton"),
     tooltip: document.getElementById("tooltip"),
     loadingState: document.getElementById("loadingState"),
   };
@@ -114,6 +119,9 @@
     });
     els.markFirstButton.addEventListener("click", markFirstMatch);
     els.clearVisitedButton.addEventListener("click", clearVisited);
+    els.zoomInButton.addEventListener("click", () => stepZoom(1.45));
+    els.zoomOutButton.addEventListener("click", () => stepZoom(1 / 1.45));
+    els.zoomResetButton.addEventListener("click", resetZoom);
     window.addEventListener("resize", scheduleMapRedraw);
   }
 
@@ -248,11 +256,12 @@
     const path = d3.geoPath(projection);
 
     svg.attr("viewBox", `0 0 ${width} ${height}`).selectAll("*").remove();
+    const layer = svg.append("g").attr("class", "zoom-layer");
 
-    svg.append("path").datum({ type: "Sphere" }).attr("class", "sphere").attr("d", path);
-    svg.append("path").datum(d3.geoGraticule10()).attr("class", "graticule").attr("d", path);
+    layer.append("path").datum({ type: "Sphere" }).attr("class", "sphere").attr("d", path);
+    layer.append("path").datum(d3.geoGraticule10()).attr("class", "graticule").attr("d", path);
 
-    svg
+    layer
       .append("g")
       .attr("class", "countries")
       .selectAll("path")
@@ -285,7 +294,7 @@
       });
 
     // Keeps tiny island countries clickable without changing the visual map shape.
-    svg
+    layer
       .append("g")
       .attr("class", "hit-points")
       .selectAll("circle")
@@ -314,6 +323,23 @@
         hideTooltip();
       });
 
+    state.zoomBehavior = d3
+      .zoom()
+      .scaleExtent([1, 8])
+      .translateExtent([
+        [-width * 0.2, -height * 0.2],
+        [width * 1.2, height * 1.2],
+      ])
+      .extent([
+        [0, 0],
+        [width, height],
+      ])
+      .on("zoom", (event) => {
+        state.zoomTransform = event.transform;
+        layer.attr("transform", state.zoomTransform);
+      });
+
+    svg.call(state.zoomBehavior).call(state.zoomBehavior.transform, state.zoomTransform);
     updateMapClasses();
   }
 
@@ -397,6 +423,24 @@
 
   function hideTooltip() {
     els.tooltip.hidden = true;
+  }
+
+  function stepZoom(factor) {
+    if (!state.zoomBehavior) return;
+
+    d3.select(els.worldMap)
+      .transition()
+      .duration(180)
+      .call(state.zoomBehavior.scaleBy, factor);
+  }
+
+  function resetZoom() {
+    if (!state.zoomBehavior) return;
+
+    d3.select(els.worldMap)
+      .transition()
+      .duration(180)
+      .call(state.zoomBehavior.transform, d3.zoomIdentity);
   }
 
   function scheduleMapRedraw() {

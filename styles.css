@@ -1,16 +1,16 @@
 :root {
   --ink: #17211d;
-  --muted: #66706b;
+  --muted: #5b665f;
   --soft: #f7f4ec;
   --panel: #fffdf8;
   --line: #ddd4c7;
   --line-strong: #c9bda9;
-  --sea: #d9edf0;
-  --sea-deep: #b9d9df;
-  --land: #ebe4d8;
-  --land-hover: #f5d8a8;
-  --visited: #18a878;
-  --visited-deep: #087b5b;
+  --sea: #c5e3e7;
+  --sea-deep: #99c7cf;
+  --land: #d9c8b0;
+  --land-hover: #f0bd70;
+  --visited: #0f9a6d;
+  --visited-deep: #056649;
   --accent: #cc6445;
   --shadow: 0 18px 50px rgba(30, 38, 35, 0.12);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -375,7 +375,8 @@ h2 {
   height: 100dvh;
   min-height: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)),
+    radial-gradient(circle at 56% 44%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0)),
     var(--sea);
 }
 
@@ -437,22 +438,28 @@ h2 {
   display: block;
   width: 100%;
   height: 100%;
+  cursor: grab;
+  touch-action: none;
+}
+
+#worldMap:active {
+  cursor: grabbing;
 }
 
 .sphere {
-  fill: rgba(255, 255, 255, 0.35);
+  fill: rgba(244, 252, 253, 0.72);
 }
 
 .graticule {
   fill: none;
-  stroke: rgba(54, 91, 98, 0.16);
-  stroke-width: 0.7;
+  stroke: rgba(45, 88, 96, 0.28);
+  stroke-width: 0.85;
 }
 
 .country {
   fill: var(--land);
-  stroke: #fff9ef;
-  stroke-width: 0.65;
+  stroke: rgba(94, 82, 66, 0.42);
+  stroke-width: 0.72;
   vector-effect: non-scaling-stroke;
   transition: fill 160ms ease, opacity 160ms ease;
 }
@@ -464,6 +471,7 @@ h2 {
 
 .country.is-visited {
   fill: var(--visited);
+  stroke: rgba(255, 255, 255, 0.68);
 }
 
 .country.is-visited:hover,
@@ -475,6 +483,38 @@ h2 {
   outline: none;
   stroke: var(--accent);
   stroke-width: 1.4;
+}
+
+.zoom-controls {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 42px 42px auto;
+  gap: 7px;
+  padding: 7px;
+  background: rgba(255, 253, 248, 0.9);
+  border: 1px solid rgba(39, 74, 79, 0.16);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(40, 61, 62, 0.16);
+}
+
+.zoom-controls button {
+  height: 38px;
+  min-width: 38px;
+  padding: 0 12px;
+  color: var(--ink);
+  background: #f6f0e4;
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.zoom-controls button:hover {
+  background: #e9dfcf;
+  border-color: #aa9a83;
 }
 
 .tooltip {
