@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Been There - Reisekarte</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="assets/vendor/d3.v7.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Reisefortschritt">
+        <header class="brand-row">
+          <div>
+            <p class="eyebrow">Reisekarte</p>
+            <h1>Been There</h1>
+          </div>
+        </header>
+
+        <section class="world-progress" aria-labelledby="worldProgressLabel">
+          <div class="metric-main">
+            <span id="worldProgressLabel">Welt</span>
+            <strong id="worldPercent">0%</strong>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div id="worldBar" class="progress-fill"></div>
+          </div>
+          <div class="metric-row">
+            <span id="visitedCount">0 besucht</span>
+            <span id="totalCount">0 gesamt</span>
+          </div>
+        </section>
+
+        <section class="continent-section" aria-labelledby="continentTitle">
+          <div class="section-heading">
+            <h2 id="continentTitle">Kontinente</h2>
+          </div>
+          <div id="continentStats" class="continent-grid"></div>
+        </section>
+
+        <section class="entry-section" aria-labelledby="countryTitle">
+          <div class="section-heading">
+            <h2 id="countryTitle">Länder</h2>
+            <span id="visibleCount" class="visible-count">0</span>
+          </div>
+
+          <div class="search-row">
+            <label class="sr-only" for="countrySearch">Land suchen</label>
+            <input id="countrySearch" type="search" placeholder="Land suchen" autocomplete="off">
+            <button id="clearSearchButton" class="clear-search" type="button" aria-label="Suche löschen" title="Suche löschen">×</button>
+          </div>
+
+          <div class="quick-actions">
+            <button id="markFirstButton" type="button">Treffer markieren</button>
+            <button id="clearVisitedButton" type="button">Alle löschen</button>
+          </div>
+
+          <div id="countryList" class="country-list" tabindex="0"></div>
+        </section>
+      </aside>
+
+      <main class="map-area">
+        <div class="top-strip">
+          <div class="map-title">
+            <strong>Weltkarte</strong>
+            <span id="mapStatus">0 markiert</span>
+          </div>
+          <div class="legend" aria-label="Legende">
+            <span><i class="legend-swatch visited"></i>Besucht</span>
+            <span><i class="legend-swatch open"></i>Offen</span>
+          </div>
+        </div>
+
+        <div id="mapWrap" class="map-wrap">
+          <svg id="worldMap" role="img" aria-label="Weltkarte mit markierten Reisezielen"></svg>
+          <div id="tooltip" class="tooltip" hidden></div>
+          <div id="loadingState" class="loading-state">Karte lädt</div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
